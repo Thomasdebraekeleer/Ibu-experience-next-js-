@@ -1,0 +1,66 @@
+/* Empêche tout débordement horizontal indésirable */
+html, body { overflow-x: hidden; }
+
+/* ====== LAYOUT 2 COLONNES ====== */
+@media (min-width: 1024px) {
+  .two-column-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 4rem !important;
+    align-items: center !important;
+    height: 100vh !important;
+  }
+  
+  .column-left, .column-right {
+    flex: 1 1 50% !important;
+    width: 50% !important;
+    height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+/* ====== SLIDER ====== */
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+  will-change: transform, opacity;
+}
+.slider-track {
+  display: flex;
+  transition: transform .6s ease;
+  will-change: transform;
+}
+.slide { flex: 0 0 33.333%; box-sizing: border-box; padding: 0 8px; min-width: 0; }
+.slide img { width: 100%; height: auto; display: block; object-fit: cover; }
+
+.nav-dots { display: flex; justify-content: center; margin-top: 12px; }
+.dot {
+  width: 8px; height: 8px; background: #053725; /* ou #39402A si tu préfères */
+  border-radius: 50%; margin: 0 4px; cursor: pointer; transition: transform .3s;
+}
+.dot.active { transform: scale(1.3); }
+
+@media (max-width: 768px) { .slide { flex: 0 0 100%; } }
+
+/* ====== TEXTE (styles initiaux pour anim) ====== */
+.ibu-text-block {
+  width: 100%; margin: 0; text-align: center; padding: 2rem 0;
+  height: 100vh; display: flex; flex-direction: column; justify-content: center;
+}
+.ibu-title, .ibu-divider, .ibu-paragraph {
+  color: #053725; /* ou #39402A */
+  opacity: 0.02;
+  transform: translateY(50px);
+  will-change: transform, opacity;
+}
+.ibu-title {
+  font-weight: 700; line-height: 1.2; margin: 0 0 2rem;
+  /* taille via Tailwind côté JSX */
+}
+.ibu-divider {
+  width: 1px; height: 40px; background: currentColor; margin: 0 auto 2rem;
+}
+.ibu-paragraph { line-height: 1.6; margin-bottom: 1.5rem; }

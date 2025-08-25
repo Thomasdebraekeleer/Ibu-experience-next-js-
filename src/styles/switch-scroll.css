@@ -1,0 +1,58 @@
+/* ========== Variables & reset ========== */
+#ibu-switch-scroll{
+  --bg:#FCF8E3;
+  --text:#053725;
+  --gap:clamp(24px,4vw,48px);
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-archivo, Archivo), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  overflow:hidden;
+}
+#ibu-switch-scroll, #ibu-switch-scroll *{ box-sizing:border-box; }
+
+/* Layout */
+#ibu-switch-scroll .ss-wrap{ width:100vw; margin-left:calc(50% - 50vw); }
+#ibu-switch-scroll .ss-grid{ display:grid; grid-template-columns:50vw 1fr; align-items:start; }
+
+/* VISUAL (images) */
+#ibu-switch-scroll .ss-visual{ position:sticky; top:0; height:100vh; pointer-events:none; }
+#ibu-switch-scroll .ss-img-stack{ position:relative; width:100%; height:100%; overflow:hidden; isolation:isolate; }
+#ibu-switch-scroll .ss-img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  opacity:0; transform:scale(1.06); transition:opacity .6s ease, transform 1.2s ease;
+}
+#ibu-switch-scroll .ss-img.is-active{ opacity:1; transform:scale(1); }
+
+/* CONTENT (texte) */
+#ibu-switch-scroll .ss-content{ display:flex; flex-direction:column; margin-left:clamp(40px,4vw,80px); }
+#ibu-switch-scroll .ss-item{
+  position:sticky; top:25vh; padding:12vh 0; opacity:0; transition:opacity .4s ease;
+  pointer-events:none; z-index:1;
+}
+#ibu-switch-scroll .ss-item.is-active{ opacity:1; pointer-events:auto; z-index:2; }
+#ibu-switch-scroll .ss-item:first-child{ margin-top:10vh; }
+
+#ibu-switch-scroll .ss-subtitle{
+  margin:0; font-weight:500; font-size:1.25rem; color:var(--text); line-height:1.2;
+}
+#ibu-switch-scroll .ss-item h3{
+  margin:0 0 .35em 0; font-weight:700; line-height:1.1; font-size:2.5rem; color:var(--text);
+}
+#ibu-switch-scroll .ss-item p{
+  margin:0 0 1.5rem 0; font-size:1rem; line-height:1.5; max-width:60ch; color:var(--text);
+}
+
+/* Responsive */
+@media (max-width:980px){
+  #ibu-switch-scroll .ss-grid{ grid-template-columns:1fr; }
+  #ibu-switch-scroll .ss-visual{ order:-1; height:min(56vh,520px); }
+  #ibu-switch-scroll .ss-content{ margin-left:0; }
+  #ibu-switch-scroll .ss-item{ top:15vh; padding:8vh 0; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+  #ibu-switch-scroll .ss-img, #ibu-switch-scroll .ss-item{ transition:none; }
+}
+
+

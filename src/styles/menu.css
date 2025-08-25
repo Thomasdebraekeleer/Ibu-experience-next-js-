@@ -1,0 +1,80 @@
+:root{
+  --main-color:#053725; /* ou #39402A si tu veux le rendu exact du snippet */
+  --font-family:var(--font-archivo, Archivo), ui-sans-serif, system-ui;
+  --dot-size:6px; --menu-gap:2rem; --indicator-offset:-4px; --menu-h:72px;
+  --logo-max-h:clamp(140px,18vw,220px);
+  --logo-inline-h:48;
+  --menu-lottie-size:clamp(32px,4vw,56px);
+}
+*{box-sizing:border-box}
+.site-header{
+  position:fixed; inset:0 0 auto 0; display:flex; align-items:center;
+  padding:.8rem 2.5rem; color:var(--main-color); background:transparent;
+  z-index:1000; width:100%;
+  will-change:height,transform,opacity;
+  transition:transform .55s cubic-bezier(.25,.1,.25,1), opacity .35s ease;
+}
+.site-header.header-hidden{ transform:translateY(-120%); opacity:0; pointer-events:none; }
+.site-header.header-hidden ~ #logo-layer{ opacity:0; pointer-events:none; }
+
+/* Cacher le logo intro quand le header est caché */
+body.header-hidden #logo-layer{ 
+  opacity:0; 
+  pointer-events:none; 
+  transform: translateX(-50%) translateY(-100px) !important;
+  transition: opacity .35s ease, transform .55s cubic-bezier(.25,.1,.25,1) !important;
+}
+
+.nav-wrapper{ position:relative; display:flex; align-items:center; width:100%; padding:0 var(--menu-gap); }
+.nav-row{ display:flex; align-items:center; width:100%; flex:1 1 auto; min-width:0; gap:0; }
+.nav-group{ display:flex; align-items:center; list-style:none; gap:var(--menu-gap); min-width:0; padding:0; margin:0; }
+.nav-group.left{ flex:1 1 0%; justify-content:flex-start; }
+.nav-group.right{ flex:1 1 0%; justify-content:flex-end; }
+.nav-group.left li:last-child{ margin-right:var(--menu-gap);}
+.nav-group.right li:first-child{ margin-left:0; }
+.nav-group a{
+  position:relative; text-decoration:none; text-transform:uppercase; font-weight:500;
+  padding:.25rem 0; line-height:1; color:var(--main-color); cursor:pointer;
+  font-size:.9rem; letter-spacing:.5px; white-space:nowrap; display:inline-block; text-align:center;
+  background:transparent!important; outline:none; -webkit-tap-highlight-color:transparent;
+  opacity:0; transform:translateY(-10px); transition:transform .45s ease, opacity .45s ease;
+}
+body.loaded .nav-group a{opacity:1; transform:translateY(0)}
+.nav-group.left  li:nth-child(1) a{transition-delay:.06s}
+.nav-group.left  li:nth-child(2) a{transition-delay:.12s}
+.nav-group.left  li:nth-child(3) a{transition-delay:.18s}
+.nav-group.right li:nth-child(1) a{transition-delay:.24s}
+.nav-group.right li:nth-child(2) a{transition-delay:.30s}
+.nav-group.right li:nth-child(3) a{transition-delay:.36s}
+
+#logo-slot{ flex:0 0 auto; width:0; display:flex; align-items:center; justify-content:center; overflow:visible; margin-left:0; margin-right:0; }
+
+.nav-indicator{
+  position:absolute; left:0; bottom:0; height:var(--dot-size); width:var(--dot-size);
+  border-radius:50%; background:var(--main-color);
+  transition:transform .35s cubic-bezier(.3,.08,.25,1), opacity .3s ease;
+  will-change:transform,opacity; pointer-events:none; opacity:0;
+}
+
+#lottie-menu-wrapper{ display:inline-flex; align-items:center; margin-left:var(--menu-gap); margin-top:-20px;
+  opacity:0; transform:translateY(-10px); transition:opacity .45s ease, transform .45s ease; }
+body.loaded #lottie-menu-wrapper{ opacity:1; transform:translateY(0) }
+#lottie-btn{ display:inline-flex; align-items:center; justify-content:center;
+  width:var(--menu-lottie-size); height:var(--menu-lottie-size); border:none; background:transparent; cursor:pointer; padding:0; border-radius:50% }
+#lottie-holder, #lottie-holder svg{ width:100%; height:100%; display:block }
+
+#logo-layer{
+  position:fixed; left:50%; top:50%; transform:translate(-50%,-50%);
+  transform-origin:center center; z-index:2000; pointer-events:none; will-change:transform,opacity,filter;
+  transition:opacity .35s ease;
+}
+#logo-layer .site-logo img{ display:block; max-height:var(--logo-max-h); width:auto; height:auto }
+
+@media (max-width:991px){
+  .nav-wrapper{ flex-wrap:wrap; justify-content:center; gap:.5rem; padding:0 var(--menu-gap); }
+  .nav-row{ flex-wrap:wrap; gap:.5rem }
+  .nav-group{ gap:1rem; flex:1 1 100%; justify-content:center }
+  #logo-slot{ order:-1; width:auto }
+  #lottie-menu-wrapper{ margin-left:1rem; margin-top:-6px }
+}
+::selection{ background:transparent }

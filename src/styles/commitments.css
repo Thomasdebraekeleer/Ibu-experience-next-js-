@@ -1,0 +1,84 @@
+/* Base */
+.scroll-section, .scroll-section *{ font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui; }
+.scroll-section{ display:flex; margin:0!important; padding:0!important; background:#FCF8E3; color:#053725; }
+
+/* Colonne gauche */
+.content-left{
+  width:45%; padding:100px 5% 50px; height:100vh;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.content-left h2{ margin:0; font-size:2.5rem; color:#053725; }
+.text-wrapper{ flex:1; display:flex; flex-direction:column; justify-content:center; }
+.text-wrapper p{ margin-bottom:2rem; font-size:1rem; line-height:1.5; color:#053725; }
+
+.text-list{ list-style:none!important; padding:0!important; margin:0; }
+.text-list li{
+  position:relative; margin:1.5rem 0; color:#053725; font-size:1.75rem;
+  opacity:.35;
+  transition:
+    color .35s ease,
+    transform .55s cubic-bezier(.22,1,.36,1),
+    opacity .55s cubic-bezier(.22,1,.36,1);
+}
+.text-list li::before,
+.text-list li::after{
+  content:""; display:block; height:1px; width:100%; background:#053725; opacity:.35;
+  margin: .5rem 0; transition: opacity .55s cubic-bezier(.22,1,.36,1);
+}
+.text-list li.active{
+  opacity:1; transform: translateX(10px);
+}
+.text-list li.active::before,
+.text-list li.active::after{ opacity:1; }
+
+/* Colonne droite (images) */
+.images-right{ width:50vw; margin-left:auto; position:relative; }
+.images-container{ position:sticky; top:0; height:100vh; overflow:hidden; }
+.images-inner img{ display:block; width:100%; height:100vh; object-fit:cover; }
+
+/* Responsive */
+@media (max-width:1280px){
+  .content-left{ width:50%; padding:50px 6%; }
+  .images-right{ width:50vw; margin-left:auto; }
+}
+@media (max-width:800px){
+  .scroll-section{ flex-direction:column; }
+  .content-left{ width:100%; height:auto; padding:40px 6%; }
+  .images-right{ width:100vw; margin-left:0; }
+  .images-container, .images-inner img{ height:60vh; }
+}
+
+/* Styles du bouton IBÙ */
+.btnx{
+  --btn-color:#FCF8E3; --btn-bg:#053725; --btn-hover-bg:#384b42;
+  --btn-border:#053725; --btn-radius:10px; --btn-fz:17px; --btn-py:.9em; --btn-px:1.35em;
+  font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui;
+  font-size:var(--btn-fz); line-height:1; font-weight:500; text-decoration:none;
+  color:var(--btn-color); padding:var(--btn-py) var(--btn-px);
+  border:1.5px solid var(--btn-border); border-radius:var(--btn-radius);
+  background:var(--btn-bg);
+  transition: background-color .35s ease, border-color .35s ease, transform .15s ease, color .35s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.btnx:hover{ background-color:transparent; border-color:#053725; border-width:1px; color:#053725; }
+.btnx-arrow{ 
+  display: inline-flex; 
+  width: 1.15em; 
+  height: 1.15em; 
+  overflow: visible;
+  align-items: center;
+  justify-content: center;
+}
+.btnx-arrow svg{ 
+  width: 100%; 
+  height: 100%; 
+  display: block;
+}
+
+/* Variante inversée du bouton */
+.btnx[style*="--btn-color: #053725"]:hover {
+  background-color: #053725 !important;
+  color: #FCF8E3 !important;
+}

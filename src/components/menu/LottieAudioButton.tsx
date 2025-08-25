@@ -19,33 +19,75 @@ export default function LottieAudioButton({ jsonPath, audioPath, className }: Pr
     console.log("Loading Lottie from:", jsonPath);
     console.log("Audio from:", audioPath);
 
-    const anim = lottie.loadAnimation({
-      container: holder,
-      renderer: "svg",
-      loop: true,
-      autoplay: false,
-      path: jsonPath,
-      rendererSettings: { preserveAspectRatio: "xMidYMid slice" }
-    });
+    // Vérifier si le fichier existe
+    fetch(jsonPath)
+      .then(response => {
+        console.log("Lottie file status:", response.status);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Lottie file loaded successfully:", data);
+      })
+      .catch(error => {
+        console.error("Error loading Lottie file:", error);
+      });
 
-    // Ajouter des event listeners pour debug
-    anim.addEventListener('data_ready', () => {
-      console.log("Lottie data ready");
-    });
-    
-    anim.addEventListener('DOMLoaded', () => {
-      console.log("Lottie DOM loaded");
-      // Masquer le fallback quand le Lottie est chargé
-      const fallback = btn.querySelector('.lottie-fallback') as HTMLElement;
-      if (fallback) {
-        fallback.style.display = 'none';
-      }
-    });
-    
-    anim.addEventListener('error', (error) => {
-      console.error("Lottie error:", error);
-      // Garder le fallback visible en cas d'erreur
-    });
+    let anim: any;
+
+    // Essayer de charger le Lottie avec fetch d'abord
+    fetch(jsonPath)
+      .then(response => response.json())
+      .then(animationData => {
+        console.log("Loading Lottie with animationData");
+        anim = lottie.loadAnimation({
+          container: holder,
+          renderer: "svg",
+          loop: true,
+          autoplay: false,
+          animationData: animationData,
+          rendererSettings: { preserveAspectRatio: "xMidYMid slice" }
+        });
+
+        setupAnimationEvents(anim);
+      })
+      .catch(error => {
+        console.error("Failed to load Lottie with fetch, trying direct path:", error);
+        
+        // Fallback: essayer avec le chemin direct
+        anim = lottie.loadAnimation({
+          container: holder,
+          renderer: "svg",
+          loop: true,
+          autoplay: false,
+          path: jsonPath,
+          rendererSettings: { preserveAspectRatio: "xMidYMid slice" }
+        });
+
+        setupAnimationEvents(anim);
+      });
+
+    function setupAnimationEvents(animation: any) {
+      animation.addEventListener('data_ready', () => {
+        console.log("Lottie data ready");
+      });
+      
+      animation.addEventListener('DOMLoaded', () => {
+        console.log("Lottie DOM loaded");
+        // Masquer le fallback quand le Lottie est chargé
+        const fallback = btn.querySelector('.lottie-fallback') as HTMLElement;
+        if (fallback) {
+          fallback.style.display = 'none';
+        }
+      });
+      
+      animation.addEventListener('error', (error: any) => {
+        console.error("Lottie error:", error);
+        // Garder le fallback visible en cas d'erreur
+      });
+    }
 
     let playing = false;
     const updateA11y = (p:boolean) => {
@@ -53,8 +95,21 @@ export default function LottieAudioButton({ jsonPath, audioPath, className }: Pr
       const label = p ? "Mettre en pause l'animation et la musique" : "Lire l'animation et la musique";
       btn.setAttribute("aria-label", label); btn.title = label;
     };
-    const playAll = () => { if (audio.ended) audio.currentTime = 0; anim.play(); audio.play().catch(()=>{}); playing = true; updateA11y(true); };
-    const pauseAll = () => { anim.pause(); audio.pause(); playing = false; updateA11y(false); };
+    
+    const playAll = () => { 
+      if (audio.ended) audio.currentTime = 0; 
+      if (anim) anim.play(); 
+      audio.play().catch(()=>{}); 
+      playing = true; 
+      updateA11y(true); 
+    };
+    
+    const pauseAll = () => { 
+      if (anim) anim.pause(); 
+      audio.pause(); 
+      playing = false; 
+      updateA11y(false); 
+    };
 
     const onClick = () => (playing ? pauseAll() : playAll());
     const onEnded = () => pauseAll();
@@ -68,7 +123,7 @@ export default function LottieAudioButton({ jsonPath, audioPath, className }: Pr
       btn.removeEventListener("click", onClick);
       btn.removeEventListener("keydown", onKey);
       audio.removeEventListener("ended", onEnded);
-      anim?.destroy();
+      if (anim) anim.destroy();
     };
   }, [jsonPath, audioPath]);
 

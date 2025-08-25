@@ -1,11 +1,11 @@
 "use client";
 
-import { IbuButton } from "./IbuButton";
+import IbuButton from "./IbuButton";
 
 export default function IbuButtonExample() {
   return (
     <div className="p-8 space-y-6 bg-[#FCF8E3]">
-      <h2 className="text-2xl font-bold text-[#053725] mb-4">Exemples d'utilisation du bouton IBÙ</h2>
+      <h2 className="text-2xl font-bold text-[#053725] mb-4">Exemples d&apos;utilisation du bouton IBÙ</h2>
       
       <div className="space-y-4">
         <div>
@@ -45,7 +45,7 @@ export default function IbuButtonExample() {
               Bouton plus grand
             </IbuButton>
             <IbuButton variant="inverted" className="opacity-80 hover:opacity-100">
-              Avec effet d'opacité
+              Avec effet d&apos;opacité
             </IbuButton>
           </div>
         </div>

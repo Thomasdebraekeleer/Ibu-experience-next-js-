@@ -68,7 +68,7 @@ export default function CommitmentsScroll() {
         <div className="text-wrapper">
           <p>
             Le projet <strong>IBÙ</strong> allie <strong>circuits courts</strong> (produits locaux),
-            <strong> éco-énergies</strong> (bois, jacuzzi sobre) et <strong>gestion responsable de l'eau</strong>
+            <strong> éco-énergies</strong> (bois, jacuzzi sobre) et <strong>gestion responsable de l&apos;eau</strong>
             (récupération, sanitaires économes), tout en intégrant des <strong>matériaux durables</strong> et un
             <strong> design bioclimatique</strong> optimisé pour minimiser son <strong>empreinte écologique</strong> et
             <strong> valoriser le territoire</strong>.

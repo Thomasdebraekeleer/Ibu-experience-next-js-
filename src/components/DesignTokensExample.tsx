@@ -97,7 +97,7 @@ export default function DesignTokensExample() {
 
         {/* Section Espacement */}
         <section className="mb-20">
-          <h2 className="text-3xl font-semibold mb-8">Grille d'Espacement XUI</h2>
+          <h2 className="text-3xl font-semibold mb-8">Grille d&apos;Espacement XUI</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32, 36, 40, 44, 48].map((space) => (
               <div key={space} className="text-center">

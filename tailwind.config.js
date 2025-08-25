@@ -14,10 +14,8 @@ module.exports = {
           DEFAULT: '#053725',
           inverse: '#FCF8E3',
         },
-        canvas: {
-          DEFAULT: '#FCF8E3',
-          inverse: '#053725',
-        },
+        canvas: '#FCF8E3',
+        'canvas-inverse': '#053725',
       },
       // Design System XUI - Typographie
       fontFamily: {

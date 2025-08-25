@@ -15,6 +15,10 @@ export default function LottieAudioButton({ jsonPath, audioPath, className }: Pr
     const audio = new Audio(audioPath);
     audio.preload = "auto"; audio.loop = false;
 
+    // Debug pour Vercel
+    console.log("Loading Lottie from:", jsonPath);
+    console.log("Audio from:", audioPath);
+
     const anim = lottie.loadAnimation({
       container: holder,
       renderer: "svg",
@@ -22,6 +26,25 @@ export default function LottieAudioButton({ jsonPath, audioPath, className }: Pr
       autoplay: false,
       path: jsonPath,
       rendererSettings: { preserveAspectRatio: "xMidYMid slice" }
+    });
+
+    // Ajouter des event listeners pour debug
+    anim.addEventListener('data_ready', () => {
+      console.log("Lottie data ready");
+    });
+    
+    anim.addEventListener('DOMLoaded', () => {
+      console.log("Lottie DOM loaded");
+      // Masquer le fallback quand le Lottie est chargé
+      const fallback = btn.querySelector('.lottie-fallback') as HTMLElement;
+      if (fallback) {
+        fallback.style.display = 'none';
+      }
+    });
+    
+    anim.addEventListener('error', (error) => {
+      console.error("Lottie error:", error);
+      // Garder le fallback visible en cas d'erreur
     });
 
     let playing = false;
@@ -53,6 +76,25 @@ export default function LottieAudioButton({ jsonPath, audioPath, className }: Pr
     <div id="lottie-menu-wrapper" aria-label="Animation et musique" className={className}>
       <button id="lottie-btn" ref={btnRef} type="button" aria-pressed="false" aria-label="Lire l'animation et la musique">
         <span id="lottie-holder" ref={holderRef} aria-hidden="true" />
+        {/* Fallback visuel si Lottie ne se charge pas */}
+        <span className="lottie-fallback" style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '24px',
+          height: '24px',
+          background: 'var(--main-color)',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'white',
+          fontSize: '12px',
+          fontWeight: 'bold'
+        }}>
+          ♫
+        </span>
       </button>
     </div>
   );

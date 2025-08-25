@@ -71,8 +71,23 @@ body.loaded #lottie-menu-wrapper{ opacity:1; transform:translateY(0) }
   transform: translateY(0) !important;
 }
 #lottie-btn{ display:inline-flex; align-items:center; justify-content:center;
-  width:var(--menu-lottie-size); height:var(--menu-lottie-size); border:none; background:transparent; cursor:pointer; padding:0; border-radius:50% }
+  width:var(--menu-lottie-size); height:var(--menu-lottie-size); border:none; background:transparent; cursor:pointer; padding:0; border-radius:50%; position:relative; }
 #lottie-holder, #lottie-holder svg{ width:100%; height:100%; display:block }
+
+/* Masquer le fallback quand le Lottie est chargé */
+#lottie-holder:has(svg) ~ .lottie-fallback,
+#lottie-holder svg ~ .lottie-fallback {
+  display: none !important;
+}
+
+/* Alternative pour les navigateurs qui ne supportent pas :has() */
+#lottie-holder svg {
+  z-index: 1;
+  position: relative;
+}
+.lottie-fallback {
+  z-index: 0;
+}
 
 
 

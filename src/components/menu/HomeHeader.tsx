@@ -9,6 +9,12 @@ export default function HomeHeader() {
   const { dotRef, wrapperRef } = useNavIndicator();
   const headerRef = useRef<HTMLElement|null>(null);
 
+  // Ajouter la classe loaded pour rendre les éléments visibles
+  useEffect(() => {
+    document.body.classList.add("loaded");
+    (window as any).__refreshDot && (window as any).__refreshDot();
+  }, []);
+
   // Hide/show au scroll
   useEffect(() => {
     const header = headerRef.current!;

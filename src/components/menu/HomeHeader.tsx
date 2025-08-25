@@ -92,7 +92,7 @@ export default function HomeHeader() {
 
         {/* LOTTIE à droite */}
         <LottieAudioButton
-          jsonPath="/lottie/menu/menu-wave.json"
+          jsonPath="/Lottie/menu/menu-wave.json"
           audioPath="/audio/nature-music.wav"
         />
       </div>

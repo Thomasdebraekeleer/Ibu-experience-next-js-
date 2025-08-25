@@ -34,10 +34,7 @@ export default function HomeHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Apparition séquencée des liens (delay via .loaded appliqué par LogoIntro)
-  useEffect(() => {
-    // rien ici, géré via .loaded en CSS
-  }, []);
+
 
   return (
     <header className="site-header" ref={headerRef}>
@@ -49,7 +46,11 @@ export default function HomeHeader() {
             <li><Link href="/reservations" className="menu-item" data-key="reservations">Reservations</Link></li>
           </ul>
 
-          <div id="logo-slot" aria-hidden="true" />
+          <div id="logo-slot" aria-hidden="true">
+            <a className="site-logo" href="/" aria-label="Accueil">
+              <img src="/logo/logo-menu-green.webp" alt="Logo IBU Experience" decoding="async" />
+            </a>
+          </div>
 
           <ul className="nav-group right" id="menu-right">
             <li><Link href="/about" className="menu-item" data-key="about">About</Link></li>

@@ -7,7 +7,7 @@ import CommitmentsScroll from "@/components/commitments/CommitmentsScroll";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-canvas text-ink">
+    <main className="min-h-screen w-full bg-canvas text-ink">
       {/* Header avec logo intégré */}
       <HomeHeader />
 

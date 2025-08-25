@@ -82,11 +82,11 @@ module.exports = {
       container: {
         center: true,
         padding: {
-          DEFAULT: '1.5rem',
-          sm: '2rem',
-          lg: '3rem',
-          xl: '4rem',
-          '2xl': '5rem',
+          DEFAULT: '0',
+          sm: '0',
+          lg: '0',
+          xl: '0',
+          '2xl': '0',
         },
       },
     },

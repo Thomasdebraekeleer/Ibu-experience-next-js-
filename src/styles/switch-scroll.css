@@ -11,8 +11,8 @@
 #ibu-switch-scroll, #ibu-switch-scroll *{ box-sizing:border-box; }
 
 /* Layout */
-#ibu-switch-scroll .ss-wrap{ width:100vw; margin-left:calc(50% - 50vw); }
-#ibu-switch-scroll .ss-grid{ display:grid; grid-template-columns:50vw 1fr; align-items:start; }
+#ibu-switch-scroll .ss-wrap{ width:100%; margin: 0; }
+#ibu-switch-scroll .ss-grid{ display:grid; grid-template-columns:50% 1fr; align-items:start; }
 
 /* VISUAL (images) */
 #ibu-switch-scroll .ss-visual{ position:sticky; top:0; height:100vh; pointer-events:none; }

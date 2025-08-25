@@ -150,7 +150,7 @@ export default function TwoColumnScrollSlider() {
   // ====== RENDER
   return (
     <section className="w-full h-screen" style={{ backgroundColor: '#FCF8E3' }}>
-      <div className="container mx-auto px-4 h-full">
+      <div className="w-full h-full px-0">
         <div className="two-column-layout" style={{ display: 'flex', flexDirection: 'column', gap: '3rem', height: '100%' }}>
           {/* Colonne gauche — Texte */}
           <div className="column-left">

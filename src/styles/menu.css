@@ -44,7 +44,7 @@
   position:absolute; left:0; bottom:0; height:var(--dot-size); width:var(--dot-size);
   border-radius:50%; background:var(--main-color);
   transition:transform .35s cubic-bezier(.3,.08,.25,1), opacity .3s ease;
-  will-change:transform,opacity; pointer-events:none; opacity:0;
+  will-change:transform,opacity; pointer-events:none; opacity:1;
 }
 
 #lottie-menu-wrapper{ display:inline-flex; align-items:center; margin-left:var(--menu-gap); margin-top:-20px;

@@ -16,9 +16,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr">
+    <html lang="fr" className="h-full">
 
-      <body className={inter.className}>
+      <body style={{ margin: 0, padding: 0 }} className={`${inter.className} bg-canvas text-ink antialiased`}>
         <GSAPProvider>
           {children}
         </GSAPProvider>

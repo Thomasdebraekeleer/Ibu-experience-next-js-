@@ -7,7 +7,7 @@ import CommitmentsScroll from "@/components/commitments/CommitmentsScroll";
 
 export default function Page() {
   return (
-    <main className="min-h-screen w-full bg-canvas text-ink">
+    <main className="min-h-screen w-full bg-canvas text-ink" style={{ backgroundColor: '#FCF8E3' }}>
       {/* Header avec logo intégré */}
       <HomeHeader />
 
@@ -27,7 +27,7 @@ export default function Page() {
       <CommitmentsScroll />
 
       {/* contenu supplémentaire */}
-      <section className="h-[80vh]" />
+      <section className="h-[80vh] bg-canvas" style={{ backgroundColor: '#FCF8E3' }} />
     </main>
   );
 }

@@ -11,8 +11,31 @@ export default function HomeHeader() {
 
   // Ajouter la classe loaded pour rendre les éléments visibles
   useEffect(() => {
-    document.body.classList.add("loaded");
-    (window as any).__refreshDot && (window as any).__refreshDot();
+    // Attendre que tout soit chargé
+    const initMenu = () => {
+      document.body.classList.add("loaded");
+      (window as any).__refreshDot && (window as any).__refreshDot();
+      // Déclencher l'événement menu-loaded pour initialiser le dot indicator
+      window.dispatchEvent(new CustomEvent("menu-loaded"));
+      
+      // Debug pour Vercel
+      console.log("Menu loaded, GSAP available:", !!(window as any).gsap);
+      console.log("Dot indicator:", document.querySelector(".nav-indicator"));
+      console.log("Lottie wrapper:", document.querySelector("#lottie-menu-wrapper"));
+    };
+
+    // Essayer immédiatement, puis avec délai pour Vercel
+    if (document.readyState === 'complete') {
+      initMenu();
+    } else {
+      window.addEventListener('load', initMenu);
+      // Fallback avec délai
+      const timer = setTimeout(initMenu, 500);
+      return () => {
+        window.removeEventListener('load', initMenu);
+        clearTimeout(timer);
+      };
+    }
   }, []);
 
   // Hide/show au scroll

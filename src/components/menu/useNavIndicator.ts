@@ -51,16 +51,27 @@ export function useNavIndicator() {
     const onMenuLoaded = () => {
       const indicator = dotRef.current;
       if (!indicator) return;
+      
+      // Fallback si GSAP n'est pas disponible
       const gsap = (window as any).gsap;
       if (gsap) {
         const ctl = { s: dotScale.current };
         gsap.to(ctl, { s:1, duration:.5, ease:"power3.out", onUpdate: () => { dotScale.current = (ctl as any).s; posIndicator(activeRef.current!); }});
         gsap.to(indicator, { opacity:1, duration:.45, ease:"power2.out" });
       } else {
-        dotScale.current = 1; indicator.style.opacity = "1"; posIndicator(activeRef.current!);
+        // Fallback sans GSAP
+        dotScale.current = 1; 
+        indicator.style.opacity = "1"; 
+        posIndicator(activeRef.current!);
       }
     };
-    window.addEventListener("menu-loaded", onMenuLoaded);
+    
+    // Initialiser le dot immédiatement ou attendre l'événement menu-loaded
+    if (document.body.classList.contains("loaded")) {
+      onMenuLoaded();
+    } else {
+      window.addEventListener("menu-loaded", onMenuLoaded);
+    }
 
     (window as any).__refreshDot = () => activeRef.current && posIndicator(activeRef.current);
 

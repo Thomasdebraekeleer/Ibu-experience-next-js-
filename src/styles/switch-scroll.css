@@ -5,7 +5,7 @@
   --gap:clamp(24px,4vw,48px);
   background:var(--bg);
   color:var(--text);
-  font-family:var(--font-archivo, Archivo), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family:var(--font-archivo), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji';
   overflow:hidden;
 }
 #ibu-switch-scroll, #ibu-switch-scroll *{ box-sizing:border-box; }

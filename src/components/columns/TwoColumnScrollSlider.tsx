@@ -26,9 +26,14 @@ export default function TwoColumnScrollSlider() {
     if (!gsap) return;
     gsap.registerPlugin(ScrollTrigger);
 
+    let scrollTriggers: any[] = [];
+
+    // Petit délai pour s'assurer que tout est monté
+    const timer = setTimeout(() => {
+
     // container: slide from right + fade-in (scrub)
     if (sliderContainerRef.current) {
-      gsap.fromTo(
+      const st = gsap.fromTo(
         sliderContainerRef.current,
         { x: 300, opacity: 0 },
         {
@@ -43,12 +48,13 @@ export default function TwoColumnScrollSlider() {
           },
         }
       );
+      scrollTriggers.push(st.scrollTrigger);
     }
 
     // texte: titre + divider + paragraphes (scrub)
     const targets = Array.from(document.querySelectorAll<HTMLElement>(".ibu-title, .ibu-divider, .ibu-paragraph"));
     targets.forEach((el) => {
-      gsap.to(el, {
+      const st = gsap.to(el, {
         opacity: 1,
         y: 0,
         ease: "power1.out",
@@ -59,10 +65,17 @@ export default function TwoColumnScrollSlider() {
           scrub: true,
         },
       });
+      scrollTriggers.push(st.scrollTrigger);
     });
 
+    }, 100);
+
+    // Rafraîchir les ScrollTriggers
+    ScrollTrigger.refresh();
+
     return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
+      clearTimeout(timer);
+      scrollTriggers.forEach((st) => st.kill());
     };
   }, []);
 

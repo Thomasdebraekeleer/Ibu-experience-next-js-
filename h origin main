@@ -1,0 +1,5 @@
+[33m2e2c03c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix: Suppression des marges blanches pour Vercel - Ajout garde-fou inline et CSS renforcé
+[33m0aeb39f[m marges blanches repair
+[33mf10a1ed[m Fix: Ajout du fichier Lottie menu-wave.json dans le bon dossier
+[33m8d7008f[m Fix: Correction du chemin Lottie et nettoyage des dossiers
+[33md2fdd67[m Fix: Amélioration du chargement Lottie avec fetch et fallback pour Vercel

@@ -1,6 +1,6 @@
 :root{
   --main-color:#053725; /* ou #39402A si tu veux le rendu exact du snippet */
-  --font-family:var(--font-archivo, Archivo), ui-sans-serif, system-ui;
+  --font-family:var(--font-archivo), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji';
   --dot-size:6px; --menu-gap:2rem; --indicator-offset:-4px; --menu-h:72px;
   --logo-max-h:clamp(140px,18vw,220px);
   --logo-inline-h:48;
@@ -34,6 +34,7 @@
   font-size:.9rem; letter-spacing:.5px; white-space:nowrap; display:inline-block; text-align:center;
   background:transparent!important; outline:none; -webkit-tap-highlight-color:transparent;
   opacity:0; transform:translateY(-10px); transition:transform .45s ease, opacity .45s ease;
+  font-family: var(--font-family);
 }
 body.loaded .nav-group a{opacity:1; transform:translateY(0)}
 .nav-group.left  li:nth-child(1) a{transition-delay:.06s}

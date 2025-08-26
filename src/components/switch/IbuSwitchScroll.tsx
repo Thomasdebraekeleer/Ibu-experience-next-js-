@@ -15,6 +15,12 @@ export default function IbuSwitchScroll() {
 
   useEffect(() => {
     if (!gsap) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    let scrollTriggers: any[] = [];
+
+    // Petit délai pour s'assurer que tout est monté
+    const timer = setTimeout(() => {
 
     const section = sectionRef.current!;
     const visual = visualRef.current!;
@@ -42,7 +48,7 @@ export default function IbuSwitchScroll() {
 
     // apparition/disparition + switch image (aller/retour)
     items.forEach((item, index) => {
-      ScrollTrigger.create({
+      const st = ScrollTrigger.create({
         trigger: item,
         start: "top 40%",
         onEnter: () => {
@@ -67,12 +73,13 @@ export default function IbuSwitchScroll() {
           }
         },
       });
+      scrollTriggers.push(st);
     });
 
     // Pin desktop uniquement
     ScrollTrigger.matchMedia({
       "(min-width: 981px)": function () {
-        ScrollTrigger.create({
+        const st = ScrollTrigger.create({
           trigger: section,
           start: "top top",
           endTrigger: items[1],
@@ -81,13 +88,20 @@ export default function IbuSwitchScroll() {
           pinSpacing: true,
           invalidateOnRefresh: true,
         });
+        scrollTriggers.push(st);
       },
     });
 
 
 
+    }, 100);
+
+    // Rafraîchir les ScrollTriggers
+    ScrollTrigger.refresh();
+
     return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
+      clearTimeout(timer);
+      scrollTriggers.forEach((st) => st.kill());
     };
   }, []);
 

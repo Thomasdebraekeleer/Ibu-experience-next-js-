@@ -19,7 +19,7 @@ module.exports = {
       },
       // Design System XUI - Typographie
       fontFamily: {
-        sans: ['var(--font-archivo)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-archivo)', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'Apple Color Emoji', 'Segoe UI Emoji'],
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.2' }],

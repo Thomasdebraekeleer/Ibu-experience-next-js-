@@ -1,0 +1,15 @@
+app/globals.css
+app/layout.tsx
+package-lock.json
+package.json
+public/Font/Archivo/Archivo-Italic-VariableFont_wdth,wght.ttf
+public/Font/Archivo/Archivo-VariableFont_wdth,wght.ttf
+src/components/columns/TwoColumnScrollSlider.tsx
+src/components/commitments/CommitmentsScroll.tsx
+src/components/switch/IbuSwitchScroll.tsx
+src/styles/columns.css
+src/styles/commitments.css
+src/styles/hero.css
+src/styles/menu.css
+src/styles/switch-scroll.css
+tailwind.config.js

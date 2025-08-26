@@ -1,9 +1,15 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Archivo } from 'next/font/google'
 import './globals.css'
 import GSAPProvider from '@/providers/GSAPProvider'
 
-const inter = Inter({ subsets: ['latin'] })
+const archivo = Archivo({
+  subsets: ['latin'],
+  weight: 'variable',
+  style: ['normal'],
+  display: 'swap',
+  variable: '--font-archivo',
+})
 
 export const metadata: Metadata = {
   title: 'IBU Experience',
@@ -16,9 +22,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr" className="h-full">
-
-      <body style={{ margin: 0, padding: 0 }} className={`${inter.className} bg-canvas text-ink antialiased`}>
+    <html lang="fr" className={`h-full ${archivo.variable}`}>
+      <body style={{ margin: 0, padding: 0 }} className="bg-canvas text-ink antialiased">
         <GSAPProvider>
           {children}
         </GSAPProvider>

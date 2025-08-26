@@ -12,6 +12,12 @@ export default function CommitmentsScroll() {
     if (!gsap) return;
     gsap.registerPlugin(ScrollTrigger);
 
+    let tl: any;
+    let st: any;
+
+    // Petit délai pour s'assurer que tout est monté
+    const timer = setTimeout(() => {
+
     const section = sectionRef.current!;
     const imgs = Array.from(section.querySelectorAll<HTMLImageElement>(".images-inner img"));
     const items = Array.from(section.querySelectorAll<HTMLLIElement>(".text-list li"));
@@ -19,7 +25,7 @@ export default function CommitmentsScroll() {
     if (!totalImgs || items.length !== totalImgs) return;
 
     // Timeline pin + translation verticale des images
-    const tl = gsap.timeline({
+    tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: "top top",
@@ -37,7 +43,7 @@ export default function CommitmentsScroll() {
     });
 
     // Highlight des items de texte en fonction de la progress
-    const st = ScrollTrigger.create({
+    st = ScrollTrigger.create({
       trigger: section,
       start: "top top",
       end: () => `+=${totalImgs * window.innerHeight}`,
@@ -50,12 +56,16 @@ export default function CommitmentsScroll() {
       },
     });
 
+    }, 100);
 
+    // Rafraîchir les ScrollTriggers
+    ScrollTrigger.refresh();
 
     return () => {
-      tl.scrollTrigger?.kill();
-      st.kill();
-      tl.kill();
+      clearTimeout(timer);
+      if (tl) tl.scrollTrigger?.kill();
+      if (st) st.kill();
+      if (tl) tl.kill();
     };
   }, []);
 

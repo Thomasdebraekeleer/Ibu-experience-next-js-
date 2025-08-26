@@ -1,15 +1,15 @@
 /* Base */
-.scroll-section, .scroll-section *{ font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui; }
+.scroll-section, .scroll-section *{ font-family: var(--font-archivo), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji'; }
 .scroll-section{ display:flex; margin:0!important; padding:0!important; background:#FCF8E3; color:#053725; }
 
 /* Colonne gauche */
 .content-left{
   width:45%; padding:100px 5% 50px; height:100vh;
-  display:flex; flex-direction:column; justify-content:space-between;
+  display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
 }
-.content-left h2{ margin:0; font-size:2.5rem; color:#053725; }
-.text-wrapper{ flex:1; display:flex; flex-direction:column; justify-content:center; }
-.text-wrapper p{ margin-bottom:2rem; font-size:1rem; line-height:1.5; color:#053725; }
+.content-left h2{ margin:0 0 .35em 0; font-size:2.5rem; color:#053725; }
+.text-wrapper{ margin-bottom:1.5rem; }
+.text-wrapper p{ margin:0 0 1.5rem 0; font-size:1rem; line-height:1.5; color:#053725; }
 
 .text-list{ list-style:none!important; padding:0!important; margin:0; }
 .text-list li{
@@ -52,7 +52,7 @@
 .btnx{
   --btn-color:#FCF8E3; --btn-bg:#053725; --btn-hover-bg:#384b42;
   --btn-border:#053725; --btn-radius:10px; --btn-fz:17px; --btn-py:.9em; --btn-px:1.35em;
-  font-family: var(--font-archivo, Archivo), ui-sans-serif, system-ui;
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji';
   font-size:var(--btn-fz); line-height:1; font-weight:500; text-decoration:none;
   color:var(--btn-color); padding:var(--btn-py) var(--btn-px);
   border:1.5px solid var(--btn-border); border-radius:var(--btn-radius);
@@ -61,8 +61,14 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
+  box-sizing: border-box;
 }
-.btnx:hover{ background-color:transparent; border-color:#053725; border-width:1px; color:#053725; }
+.btnx:hover{ 
+  background-color:transparent; 
+  border-color:#053725; 
+  border-width:1.5px; 
+  color:#053725; 
+}
 .btnx-arrow{ 
   display: inline-flex; 
   width: 1.15em; 

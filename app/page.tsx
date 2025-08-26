@@ -4,6 +4,7 @@ import BookingOverlay from "@/components/hero/BookingOverlay";
 import TwoColumnScrollSlider from "@/components/columns/TwoColumnScrollSlider";
 import IbuSwitchScroll from "@/components/switch/IbuSwitchScroll";
 import CommitmentsScroll from "@/components/commitments/CommitmentsScroll";
+import TextReveal from "@/app/components/sections/TextReveal";
 
 export default function Page() {
   return (
@@ -25,6 +26,14 @@ export default function Page() {
 
       {/* === Section "Nos engagements – scroll switch" === */}
       <CommitmentsScroll />
+
+      {/* === Section "Text Reveal" === */}
+      <TextReveal
+        eyebrow="Introduction"
+        title="Une expérience au cœur de la nature"
+        body="Nos tiny houses vous invitent à ralentir. Chaque lieu est choisi pour son calme et sa beauté. Laissez le paysage se révéler au rythme de votre respiration et savourez chaque instant."
+        align="center"
+      />
 
       {/* contenu supplémentaire */}
       <section className="h-[80vh] bg-canvas" style={{ backgroundColor: '#FCF8E3' }} />

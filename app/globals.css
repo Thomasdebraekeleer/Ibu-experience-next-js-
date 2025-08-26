@@ -33,3 +33,40 @@ html {
     overflow-x: hidden; 
   }
 }
+
+@layer components {
+  /* Classes utilitaires pour les surfaces */
+  .surface {
+    @apply bg-canvas text-ink;
+  }
+  
+  .surface-invert {
+    @apply bg-canvas-inverse text-ink-inverse;
+  }
+  
+  /* Classes de typographie */
+  .text-h1 {
+    @apply text-4xl font-bold leading-tight tracking-tight;
+  }
+  
+  .text-h2 {
+    @apply text-3xl font-semibold leading-tight tracking-tight;
+  }
+  
+  .text-h3 {
+    @apply text-2xl font-semibold leading-tight tracking-tight;
+  }
+  
+  .text-body {
+    @apply text-lg leading-relaxed;
+  }
+  
+  .text-small {
+    @apply text-sm leading-relaxed;
+  }
+  
+  /* Section de base */
+  .section {
+    @apply py-20;
+  }
+}
